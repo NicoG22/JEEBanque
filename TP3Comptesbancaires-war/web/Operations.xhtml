@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <f:metadata>
         <f:viewParam name="id" value="#{operationsBancairesMBean.idCompte}"/>
     </f:metadata>
@@ -21,40 +22,47 @@
             </ui:define>
 
             <ui:define name="content">
-        <h1>Operations bancaires du compte No #{param.id}:</h1>
-        <f:view>
-            <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <h:dataTable value="#{operationsBancairesMBean.operationsBancaires}" var="item">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Dateoperation"/>
-                        </f:facet>
-                        <h:outputText value="#{item.dateoperation}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Description"/>
-                        </f:facet>
-                        <h:outputText value="#{item.description}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Montant"/>
-                        </f:facet>
-                        <h:outputText value="#{item.montant}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Id"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </f:view>
+        
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Operations bancaires du compte No #{param.id}:"/></h1>
+                        <p:dataTable 
+                            value="#{operationsBancairesMBean.operationsBancaires}" 
+                            var="item"
+                            paginator="true"
+                            rows="10"
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,10,15">
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Dateoperation"/>
+                                </f:facet>
+                                <h:outputText value="#{item.dateoperation}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Description"/>
+                                </f:facet>
+                                <h:outputText value="#{item.description}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Montant"/>
+                                </f:facet>
+                                <h:outputText value="#{item.montant}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
             </ui:define>
 
         </ui:composition>

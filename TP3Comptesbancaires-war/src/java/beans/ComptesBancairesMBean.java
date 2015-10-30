@@ -8,6 +8,7 @@ package beans;
 import entities.CompteBancaire;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -48,14 +49,31 @@ public class ComptesBancairesMBean implements Serializable {
                     public List<CompteBancaire> load(int start, int nb, 
                             String nomChamp, SortOrder so, 
                             Map map) {
+                        
+                        List<CompteBancaire> listFilter = new ArrayList();
+                        
+                        //filter
+                        if (!map.isEmpty()) {
+                            for (Iterator<String> it = map.keySet().iterator(); it.hasNext();) {
+                                String filterProperty = it.next();
+                                String filterValue = (String) map.get(filterProperty);
+                                
+                                for (CompteBancaire c : gc.getComptesFilter(start, nb, filterProperty, filterValue)) {
+                                    listFilter.add(c);
+                                }
+                            }
+                            
+                            return listFilter;
+                        }
+                        
                         // A ecrire
                         System.out.println("### load : start ="+ start + " nb = "+ nb + "nom colonne = " + nomChamp);
                         if(nomChamp != null) {
-                            if(nomChamp.equals("nom")) {
+                            if(nomChamp.equals("nom") || nomChamp.equals("solde")) {
                                 // Il faut trier
                                 System.out.println("Tri: champ= " + 
                                         nomChamp + " ordre: " +so.name());
-                                return gc.getComptesTriesParNom(start, nb, so.name());
+                                return gc.getComptesTries(start, nb, so.name(), nomChamp);
                             }
                         } else {
                             // Juste la pagination, pas de tri, de filtre

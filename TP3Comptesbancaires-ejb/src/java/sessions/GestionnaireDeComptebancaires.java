@@ -38,18 +38,18 @@ public class GestionnaireDeComptebancaires {
     }
     
     public void creerComptesDeTest() {
-        creerCompte(new CompteBancaire("John Lennon", 150000));
-        creerCompte(new CompteBancaire("Paul McCartney", 950000));
-        creerCompte(new CompteBancaire("Ringo Starr", 20000));
-        creerCompte(new CompteBancaire("Georges Harrisson", 100000));
-  
         for(int i=0; i < 2000; i++) {
             String nom = "Proprio" + i;
             double solde = Math.round(Math.random() * 100000);
-            creerCompte(new CompteBancaire(nom, solde));
+            
+            CompteBancaire c = new CompteBancaire(nom, solde);
+            
+            for(int j=1; j < 30; j++) {
+                c.addOperation("Opération " + j, solde);
+            }
+            
+            creerCompte(c);
         }
-    
-    
     }
     
     public List<CompteBancaire> findAll() {
@@ -74,22 +74,45 @@ public class GestionnaireDeComptebancaires {
          return (long) q.getSingleResult();
       }
       
-      public List<CompteBancaire> getComptesTriesParNom(int start, int nb, String order) {
+      public List<CompteBancaire> getComptesTries(int start, int nb, String order, String champ) {
         String orderValue = "";
           if(order.equals("ASCENDING")) {
               orderValue = "ASC";
          } else {
               orderValue = "DESC";
           }
-          String r = "select c from CompteBancaire c order by c.nomProprietaire " 
+          
+          String r = "";
+          
+          if(champ.equals("nom")) {
+            r = "select c from CompteBancaire c order by c.nomProprietaire " 
+                  + orderValue;
+            System.out.println("TRI PAR NOM: " + r);
+          } 
+          else if(champ.equals("solde")) {
+            r = "select c from CompteBancaire c order by c.solde " 
                 + orderValue;
-          System.out.println("TRI PAR NOM: " + r);
+            System.out.println("TRI PAR SOLDE: " + r);
+          } 
           Query q = em.createQuery(r);
         q.setFirstResult(start);
         q.setMaxResults(nb);
         return q.getResultList();
-    } 
+    }
 
+      public List<CompteBancaire> getComptesFilter(int start, int nb, String champ, String valeurChamp) {
+          
+        String r = "";
+
+        if(champ.equals("nom")) {
+          r = "select c from CompteBancaire c where (c.nomProprietaire LIKE '" + valeurChamp + "%')";
+          System.out.println("FILTRE PAR NOM: " + r);
+        } 
+        Query q = em.createQuery(r);
+        q.setFirstResult(start);
+        q.setMaxResults(nb);
+        return q.getResultList();
+    } 
       
     public void crediterUnCompte(int id, double montant) {
         // On va chercher un compte dans la base, il est connecté

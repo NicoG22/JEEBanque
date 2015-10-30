@@ -101,13 +101,13 @@
                             >
                             
                             >
-                            <p:column>
+                            <p:column sortBy="#{item.solde}">
                                 <f:facet name="header">
                                     <h:outputText value="Solde"/>
                                 </f:facet>
                                 <h:outputText value="#{item.solde}"/>
                             </p:column>
-                            <p:column sortBy="#{item.nom}">
+                            <p:column sortBy="#{item.nom}" filterBy="#{item.nom}>
                                 <f:facet name="header">
                                     <h:outputText value="Nom"/>
                                 </f:facet>
