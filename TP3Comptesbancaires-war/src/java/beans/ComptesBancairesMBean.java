@@ -8,12 +8,17 @@ package beans;
 import entities.CompteBancaire;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import sessions.GestionnaireDeComptebancaires;
@@ -236,7 +241,7 @@ public class ComptesBancairesMBean implements Serializable {
 
     private void refreshListeDesComptes() {
         listeDesComptes = gc.findAll();
-        System.out.println("On FAIT FINDALL");
+        System.out.println("ON FAIT FINDALL");
     }
 
     // METHODES D'ACTION
@@ -269,6 +274,16 @@ public class ComptesBancairesMBean implements Serializable {
             System.out.println("### PAS ASSEZ d'argent");
         }
     }
+    
+    public void confirmerSuppressionCompte(CompteBancaire c) {
+        supprimerCompte(c);
+        addMessage("Info", "Compte numéro " + c.getId() + " supprimé avec succès.");
+    }
+     
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
     public void supprimerCompte(CompteBancaire c) {
         System.out.println("### Suppression du compte " + c.getId());
@@ -283,6 +298,5 @@ public class ComptesBancairesMBean implements Serializable {
       
       else
           return "LigneBlanche";
-   } 
-
+    }
 }

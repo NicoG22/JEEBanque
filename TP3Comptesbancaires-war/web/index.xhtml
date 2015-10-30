@@ -100,7 +100,6 @@
                             rowStyleClass="#{comptesBancairesMBean.dette(item.solde)}"
                             >
                             
-                            >
                             <p:column sortBy="#{item.solde}">
                                 <f:facet name="header">
                                     <h:outputText value="Solde"/>
@@ -127,9 +126,21 @@
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Supprimmer"/>
+                                    <h:outputText value="Supprimer"/>
                                 </f:facet>
-                                <h:commandLink action="#{comptesBancairesMBean.supprimerCompte(item)}" value="Supprimer"/>
+                                <h:form>
+                                    <p:growl id="message" showDetail="true" />
+
+                                        <p:commandButton value="Supprimer" actionListener="#{comptesBancairesMBean.supprimerCompte(item)}" update="message">
+                                            <p:confirm header="Confirmation" message="Etes vous sûre?" icon="ui-icon-alert" />
+                                        </p:commandButton>
+
+                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                        </p:confirmDialog>
+                                    <p:growl id="growl" showDetail="true" />
+                                </h:form>
                             </p:column>
 
                         </p:dataTable>
