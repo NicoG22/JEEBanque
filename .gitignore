@@ -6,3 +6,8 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 .nb-gradle/
+
+TP3Comptesbancaires-ejb/nbproject/private/private.properties
+TP3Comptesbancaires-ejb/src/conf/persistence.xml
+TP3Comptesbancaires-ejb/setup/sun-resources.xml
+TP3Comptesbancaires-war/nbprojet/private/private.properties
