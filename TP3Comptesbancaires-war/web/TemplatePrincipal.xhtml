@@ -16,17 +16,41 @@
 
         <div id="top" class="top">
             <ui:insert name="top">
-                
+               
+                <h2>Créer des comptes de test</h2>
+                <h:form>
+                    <h:commandButton 
+                        value="Cliquer pour créer des comptes"
+                        action="#{comptesBancairesMBean.creerComptesDeTest()}">
+                    </h:commandButton>
+                </h:form>
+            
                 
             </ui:insert>
         </div>
         <div>
             <div id="left">
-                <ui:insert name="left">Left</ui:insert>
+                <ui:insert name="left">
+                    <h:outputText rendered="#{!connexionMBean.connected}" value="#{connexionMBean.message}" /> 
+
+                <h:form id="loginForm" rendered="#{!connexionMBean.connected}"> 
+                    Login: <h:inputText id="loginForm" value="#{connexionMBean.login}" /> 
+                    Mot de passe: <h:inputText id="password" value="#{connexionMBean.password}" /> 
+
+                    <h:commandButton value="Login" action="#{connexionMBean.checkLogin}" /> 
+                </h:form> 
+                <h:form id="deconnexionForm" rendered="#{connexionMBean.connected}"> 
+                    <h:outputText  value="#{connexionMBean.message}" />
+                    <h:commandButton value="Deconnexion" action="#{connexionMBean.deconnexion}" />
+                </h:form> 
+                </ui:insert>
             </div>
             
             <div id="content" class="left_content">
-                <ui:insert name="content">Content</ui:insert>
+                <ui:insert name="content">
+                    
+                    
+                </ui:insert>
             </div>
         </div>
     </h:body>
