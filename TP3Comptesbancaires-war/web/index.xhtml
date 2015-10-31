@@ -11,111 +11,20 @@
         <ui:composition template="./TemplatePrincipal.xhtml">
 
             <ui:define name="content">
-                <h1>Menu principal</h1>
+                <p:panel id="panel" header="Connexion">
+                 <h:outputText rendered="#{!connexionMBean.connected}" value="#{connexionMBean.message}" /> 
 
-                <h2>Créditer un compte</h2>
-                <h:form>
-                    <h:outputLabel value="Id du compte "></h:outputLabel>
-                    <h:inputText value="#{comptesBancairesMBean.idCompteACrediter}"></h:inputText>
-                    <h:outputLabel value="Montant"></h:outputLabel>
-                    <p:autoComplete id="basic" value="#{comptesBancairesMBean.montantACrediter}" completeMethod="#{comptesBancairesMBean.completeMontant}" />
-                    <h:commandButton 
-                        value="Créditer le compte"
-                        action="#{comptesBancairesMBean.crediterUnCompte()}">
-                    </h:commandButton>
-                </h:form>
-                <h2>Débiter un compte</h2>
-                <h:form>
-                    <h:outputLabel value="Id du compte "></h:outputLabel>
-                    <h:inputText value="#{comptesBancairesMBean.idCompteADebiter}"></h:inputText>
-                    <h:outputLabel value="Montant"></h:outputLabel>
-                    <p:autoComplete id="basic" value="#{comptesBancairesMBean.montantADebiter}" completeMethod="#{comptesBancairesMBean.completeMontant}" />
-                    <h:commandButton 
-                        value="Débiter le compte"
-                        action="#{comptesBancairesMBean.debiterUnCompte()}">
-                    </h:commandButton>
-                </h:form>
-                <h2>Transfert d'argent</h2>
-                <h:form>
-                    <h:outputLabel value="Id du compte source"></h:outputLabel>
-                    <h:inputText value="#{comptesBancairesMBean.id1}"></h:inputText>
-                    <h:outputLabel value="Id du compte destination"></h:outputLabel>
-                    <h:inputText value="#{comptesBancairesMBean.id2}"></h:inputText>
-                    <h:outputLabel value="Montant"></h:outputLabel>
-                    <p:autoComplete id="basic" value="#{comptesBancairesMBean.montantTransfert}" completeMethod="#{comptesBancairesMBean.completeMontant}" />
-                    <h:commandButton 
-                        value="Transférer"
-                        action="#{comptesBancairesMBean.transferer()}">
-                    </h:commandButton>
-                    <h3>Résultat de l'opération: #{comptesBancairesMBean.message}</h3>
+                <h:form id="loginForm" rendered="#{!connexionMBean.connected}"> 
+                    Login: <h:inputText id="loginForm" value="#{connexionMBean.login}" /> 
+                    Mot de passe: <h:inputText id="password" value="#{connexionMBean.password}" /> 
 
-                </h:form>
-                
-                <h2>Liste des comptes</h2>
-                <f:view>
-
-
-                    <h:form>
-                        <h1><h:outputText value="List"/></h1>
-                        <p:dataTable 
-                            value="#{comptesBancairesMBean.lazyCompteBancaires}" 
-                            var="item"
-                            lazy="true"
-                            paginator="true"
-                            rows="10"
-                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                            rowsPerPageTemplate="5,10,15"
-                            emptyMessage="Pas de compte bancaire"
-                            rowStyleClass="#{comptesBancairesMBean.dette(item.solde)}"
-                            >
-                            
-                            <p:column sortBy="#{item.solde}">
-                                <f:facet name="header">
-                                    <h:outputText value="Solde"/>
-                                </f:facet>
-                                <h:outputText value="#{item.solde}"/>
-                            </p:column>
-                            <p:column sortBy="#{item.nom}" filterBy="#{item.nom}">
-                                <f:facet name="header">
-                                    <h:outputText value="Nom"/>
-                                </f:facet>
-                                <h:outputText value="#{item.nom}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Id"/>
-                                </f:facet>
-                                <h:outputText value="#{item.id}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Operations"/>
-                                </f:facet>
-                                <h:link   outcome="Operations.xhtml?id=#{item.id}" value="Details"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Supprimer"/>
-                                </f:facet>
-                                <h:form>
-                                    <p:growl id="message" showDetail="true" />
-
-                                        <p:commandButton value="Supprimer" actionListener="#{comptesBancairesMBean.supprimerCompte(item)}" update="message">
-                                            <p:confirm header="Confirmation" message="Etes vous sûre?" icon="ui-icon-alert" />
-                                        </p:commandButton>
-
-                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                        </p:confirmDialog>
-                                    <p:growl id="growl" showDetail="true" />
-                                </h:form>
-                            </p:column>
-
-                        </p:dataTable>
-                    </h:form>
-                </f:view>
-
+                    <h:commandButton value="Login" action="#{connexionMBean.checkLogin}" /> 
+                </h:form> 
+                <h:form id="deconnexionForm" rendered="#{connexionMBean.connected}"> 
+                    <h:outputText  value="#{connexionMBean.message}" />
+                    <h:commandButton value="Deconnexion" action="#{connexionMBean.deconnexion}" />
+                </h:form> 
+                </p:panel>
             </ui:define>
 
 
