@@ -299,4 +299,13 @@ public class ComptesBancairesMBean implements Serializable {
       else
           return "LigneBlanche";
     }
+    
+    public List<String> completeMontant(String montant) {
+        List<String> results = new ArrayList<>();
+        for(int i = 0; i < 10; i++) {
+            results.add(montant + i);
+        }
+         
+        return results;
+    }
 }

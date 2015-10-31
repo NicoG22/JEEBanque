@@ -45,7 +45,7 @@
                     <h:outputLabel value="Id du compte "></h:outputLabel>
                     <h:inputText value="#{comptesBancairesMBean.idCompteACrediter}"></h:inputText>
                     <h:outputLabel value="Montant"></h:outputLabel>
-                    <h:inputText value="#{comptesBancairesMBean.montantACrediter}"></h:inputText>
+                    <p:autoComplete id="basic" value="#{comptesBancairesMBean.montantACrediter}" completeMethod="#{comptesBancairesMBean.completeMontant}" />
                     <h:commandButton 
                         value="Créditer le compte"
                         action="#{comptesBancairesMBean.crediterUnCompte()}">
@@ -56,7 +56,7 @@
                     <h:outputLabel value="Id du compte "></h:outputLabel>
                     <h:inputText value="#{comptesBancairesMBean.idCompteADebiter}"></h:inputText>
                     <h:outputLabel value="Montant"></h:outputLabel>
-                    <h:inputText value="#{comptesBancairesMBean.montantADebiter}"></h:inputText>
+                    <p:autoComplete id="basic" value="#{comptesBancairesMBean.montantADebiter}" completeMethod="#{comptesBancairesMBean.completeMontant}" />
                     <h:commandButton 
                         value="Débiter le compte"
                         action="#{comptesBancairesMBean.debiterUnCompte()}">
@@ -69,7 +69,7 @@
                     <h:outputLabel value="Id du compte destination"></h:outputLabel>
                     <h:inputText value="#{comptesBancairesMBean.id2}"></h:inputText>
                     <h:outputLabel value="Montant"></h:outputLabel>
-                    <h:inputText value="#{comptesBancairesMBean.montantTransfert}"></h:inputText>
+                    <p:autoComplete id="basic" value="#{comptesBancairesMBean.montantTransfert}" completeMethod="#{comptesBancairesMBean.completeMontant}" />
                     <h:commandButton 
                         value="Transférer"
                         action="#{comptesBancairesMBean.transferer()}">
