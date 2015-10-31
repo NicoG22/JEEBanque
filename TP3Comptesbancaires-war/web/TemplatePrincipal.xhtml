@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -25,7 +26,9 @@
                     </h:commandButton>
                 </h:form>
             
-                
+                  
+                    
+                    
             </ui:insert>
         </div>
         <div>
@@ -49,7 +52,18 @@
             <div id="content" class="left_content">
                 <ui:insert name="content">
                     
-                    
+                </ui:insert>
+                
+                
+                
+                <ui:insert name="bottom">
+                    <p:dock position="bottom">
+                        <p:menuitem value="Accueil" icon="/resources/images/dock/home.png" outcome="index.xhtml"/>
+                        <p:menuitem value="Crediter" icon="/resources/images/dock/credit.png" outcome="crediter.xhtml"/>
+                        <p:menuitem value="Debiter" icon="/resources/images/dock/debit.jpg" outcome="debiter.xhtml"/>
+                        <p:menuitem value="liste" icon="/resources/images/dock/liste.png" outcome="listeComptes.xhtml"/>
+    
+                </p:dock>
                 </ui:insert>
             </div>
         </div>
