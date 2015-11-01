@@ -48,13 +48,13 @@ a:link:hover, a:visited:hover  {
 }
 
  .LigneRouge {
-   background-color: red !important;
-   color: black;
+ 
+   color: red;
      
 }
  
 .LigneBlanche {
-   background-color: whitesmoke !important;
+   color: green;
 }
 
 .connexion-form {
