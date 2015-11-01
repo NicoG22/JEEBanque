@@ -42,7 +42,7 @@ public class GestionnaireDeComptebancaires {
             String nom = "Proprio" + i;
             double solde = Math.round(Math.random() * 100000);
             
-            CompteBancaire c = new CompteBancaire(nom, solde);
+            CompteBancaire c = new CompteBancaire(nom, solde) {};
             
             for(int j=1; j < 30; j++) {
                 c.addOperation("Opération " + j, solde);
