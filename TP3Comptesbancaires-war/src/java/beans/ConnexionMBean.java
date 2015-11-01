@@ -90,7 +90,7 @@ public class ConnexionMBean implements Serializable {
         if (connected) {
             message = "Bienvenue, vous êtes connecté en tant que " + login + " ! ";
             try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("crediter.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
             }
             catch(Exception e) {
                 e.printStackTrace();

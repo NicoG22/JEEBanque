@@ -10,25 +10,6 @@
 
         <ui:composition template="./TemplatePrincipal.xhtml">
 
-            <ui:define name="content">
-                <p:panel id="panel" header="Connexion">
-                 <h:outputText rendered="#{!connexionMBean.connected}" value="#{connexionMBean.message}" /> 
-
-                <h:form id="loginForm" rendered="#{!connexionMBean.connected}"> 
-                    Login: <h:inputText id="loginForm" value="#{connexionMBean.login}" /> 
-                    Mot de passe: <h:inputText id="password" value="#{connexionMBean.password}" /> 
-
-                    <h:commandButton value="Login" action="#{connexionMBean.checkLogin}" /> 
-                </h:form> 
-                <h:form id="deconnexionForm" rendered="#{connexionMBean.connected}"> 
-                    <h:outputText  value="#{connexionMBean.message}" />
-                    <h:commandButton value="Deconnexion" action="#{connexionMBean.deconnexion}" />
-                </h:form> 
-                </p:panel>
-            </ui:define>
-
-
-
         </ui:composition>
 
     </body>
