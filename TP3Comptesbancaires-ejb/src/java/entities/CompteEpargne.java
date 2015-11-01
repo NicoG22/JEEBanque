@@ -34,7 +34,9 @@ public class CompteEpargne extends CompteBancaire implements Serializable{
     }
     
     
-    
+    public void tauxInteret(){
+        long t = (long) (this.apport*1.25);
+    }
     
     
 }
