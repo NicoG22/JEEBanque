@@ -6,18 +6,26 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <body>
-        <div>
-            <p:panel id="panel" header="Connexion">
-             <h:outputText rendered="#{!connexionMBean.connected}" value="#{connexionMBean.message}" /> 
+    <h:head>
+        <!-- Latest compiled and minified CSS -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous"/>  
+        <h:outputStylesheet name="./css/default.css"/>
+    </h:head>
+    <h:body>
+        <div class="page-login" id="page-index">
+            <div class="connexion-form">
+                <p:panel id="panel-connexion" header="Connexion">
+                 <h:outputText rendered="#{!connexionMBean.connected}" value="#{connexionMBean.message}" /> 
 
-            <h:form id="loginForm" rendered="#{!connexionMBean.connected}"> 
-                Login: <h:inputText id="loginForm" value="#{connexionMBean.login}" /> 
-                Mot de passe: <h:inputText id="password" value="#{connexionMBean.password}" /> 
+                <h:form id="loginForm" rendered="#{!connexionMBean.connected}"> 
+                    Login: <h:inputText id="loginForm" value="#{connexionMBean.login}" /> 
+                    Mot de passe: <h:inputText id="password" value="#{connexionMBean.password}" /> 
 
-                <h:commandButton value="Login" action="#{connexionMBean.checkLogin}" /> 
-            </h:form> 
-            </p:panel>
+                    <h:commandButton value="Login" action="#{connexionMBean.checkLogin}" /> 
+                </h:form> 
+                </p:panel>
+            </div>
         </div>
-    </body>
+    </h:body>
 </html>
