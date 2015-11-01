@@ -39,8 +39,17 @@ and open the template in the editor.
     width: 150px;
 }
 
+.list-content {
+    margin-bottom: 60px;
+}
+
 .center_content {
     position: relative;
+    background-color: #dddddd;
+    padding: 5px;
+}
+
+.content_elem {
     background-color: #dddddd;
     padding: 5px;
 }
