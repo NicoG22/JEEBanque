@@ -11,14 +11,14 @@ and open the template in the editor.
 html, body {
     height: 100%;
     position: relative;
+    margin: 0px;
 }
 
 body {
     background-color: #ffffff;
     font-size: 12px;
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    color: #000000;  
-    margin: 10px;
+    color: #000000;
 }
 
 h1 {
@@ -73,7 +73,7 @@ a:link:hover, a:visited:hover  {
 }
 
 #page-index {
-    background: url(http://ahuhah.com/i/big-ben-at-night-wallpaper-hd-l8yoo.jpg) no-repeat center fixed;
+    background: url(../images/big-ben-at-night-wallpaper-hd-l8yoo.jpg) no-repeat center fixed;
     background-size: cover;
     display: table;
     font-family: "Open Sans",Arial,sans-serif;
