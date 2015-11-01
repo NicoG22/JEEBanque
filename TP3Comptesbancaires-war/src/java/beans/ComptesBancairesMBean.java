@@ -17,6 +17,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.primefaces.component.datatable.DataTable;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
@@ -59,12 +60,22 @@ public class ComptesBancairesMBean implements Serializable {
                         
                         //filter
                         if (!map.isEmpty()) {
+                            
                             for (Iterator<String> it = map.keySet().iterator(); it.hasNext();) {
                                 String filterProperty = it.next();
                                 String filterValue = (String) map.get(filterProperty);
                                 
-                                for (CompteBancaire c : gc.getComptesFilter(start, nb, filterProperty, filterValue)) {
-                                    listFilter.add(c);
+                                if(nomChamp != null) {
+                                    if(nomChamp.equals("nom") || nomChamp.equals("solde")) {
+                                        for (CompteBancaire c : gc.getComptesTriesEtFiltres(start, nb, nomChamp, filterProperty, filterValue, so.name())) {
+                                            listFilter.add(c);
+                                        }
+                                    }
+                                }
+                                else {
+                                    for (CompteBancaire c : gc.getComptesFilter(start, nb, filterProperty, filterValue)) {
+                                        listFilter.add(c);
+                                    }
                                 }
                             }
                             
@@ -75,9 +86,6 @@ public class ComptesBancairesMBean implements Serializable {
                         System.out.println("### load : start ="+ start + " nb = "+ nb + "nom colonne = " + nomChamp);
                         if(nomChamp != null) {
                             if(nomChamp.equals("nom") || nomChamp.equals("solde")) {
-                                // Il faut trier
-                                System.out.println("Tri: champ= " + 
-                                        nomChamp + " ordre: " +so.name());
                                 return gc.getComptesTries(start, nb, so.name(), nomChamp);
                             }
                         } else {
