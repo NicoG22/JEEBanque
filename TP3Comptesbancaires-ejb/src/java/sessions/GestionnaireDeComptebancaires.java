@@ -114,6 +114,39 @@ public class GestionnaireDeComptebancaires {
         return q.getResultList();
     } 
       
+      public List<CompteBancaire> getComptesTriesEtFiltres(int start, int nb, String champTrie, String champFiltre, String valeurChamp, String order) {
+          
+          String orderValue = "";
+          if(order.equals("ASCENDING")) {
+              orderValue = "ASC";
+         } else {
+              orderValue = "DESC";
+          } 
+        
+        String r = "";
+
+        if(champFiltre.equals("nom")) {
+              switch (champTrie) {
+                  case "nom":
+                      r = "select c from CompteBancaire c where (c.nomProprietaire LIKE '" + valeurChamp + "%') order by c.nomProprietaire "
+                              + orderValue;
+                      System.out.println("TRI PAR NOM: " + r);
+                      break;
+                  case "solde":
+                      r = "select c from CompteBancaire c where (c.nomProprietaire LIKE '" + valeurChamp + "%') order by c.solde "
+                              + orderValue;
+                      System.out.println("TRI PAR SOLDE: " + r);
+                      break;
+              }
+          
+            System.out.println("FILTRE PAR NOM: " + r);
+        } 
+        Query q = em.createQuery(r);
+        q.setFirstResult(start);
+        q.setMaxResults(nb);
+        return q.getResultList();
+    }
+      
     public void crediterUnCompte(int id, double montant) {
         // On va chercher un compte dans la base, il est connecté
         CompteBancaire c = em.find(CompteBancaire.class, id);
