@@ -27,7 +27,10 @@
                     </h:commandButton>
                 </h:form>
             
-                  
+                <h:form id="deconnexionForm" rendered="#{connexionMBean.connected}"> 
+                    <h:outputText  value="#{connexionMBean.message}" />
+                    <h:commandButton value="Deconnexion" action="#{connexionMBean.deconnexion}" />
+                </h:form> 
                     
                     
             </ui:insert>

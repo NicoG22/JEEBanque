@@ -39,6 +39,11 @@ and open the template in the editor.
     width: 150px;
 }
 
+.connexion-form {
+    position: relative;
+    vertical-align: middle;
+}
+
 .list-content {
     margin-bottom: 60px;
 }

@@ -8,6 +8,8 @@ package beans;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import user.Utilisateur;
 
 /**
@@ -74,6 +76,12 @@ public class ConnexionMBean implements Serializable {
     public void deconnexion() {
         connected = false;
         message = "Veuillez vous identifier :";
+        try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("connexion.xhtml");
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void checkLogin() {
@@ -81,6 +89,12 @@ public class ConnexionMBean implements Serializable {
         connected = (login.equals("Flo") && password.equals("mbds"));
         if (connected) {
             message = "Bienvenue, vous êtes connecté en tant que " + login + " ! ";
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("crediter.xhtml");
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
         } else {
             message = "Mauvais login/password, veuillez recommencer ! ";
         }
