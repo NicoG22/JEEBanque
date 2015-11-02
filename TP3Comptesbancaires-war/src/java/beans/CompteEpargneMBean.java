@@ -18,7 +18,7 @@ import javax.persistence.EntityManager;
 @ViewScoped
 public class CompteEpargneMBean implements Serializable{
     
-    private EntityManager em;
+    
 
     /**
      * Creates a new instance of CompteEpargneMBean
