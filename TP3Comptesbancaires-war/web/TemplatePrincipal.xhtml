@@ -19,9 +19,10 @@
         <div id="top" class="top">
             <ui:insert name="top">
             
+                <img class="logoSite" src="resources/images/logo.jpg"/>
+                <span class="textLogo">TP Banque</span>
                 <h:form id="deconnexionForm" rendered="#{connexionMBean.connected}"> 
-                    <h:outputText  value="#{connexionMBean.message}" />
-                    <h:commandButton value="Deconnexion" action="#{connexionMBean.deconnexion}" />
+                    <h:commandButton value="Deconnexion" image="resources/images/logout.png" action="#{connexionMBean.deconnexion}" />
                 </h:form> 
                     
                     
@@ -49,8 +50,9 @@
         <div class="list-content">
             <h2>Liste des comptes</h2>
             <f:view>
-                <h:form>
+                <h:form id="formListComptes">
                     <p:dataTable 
+                        id="tableListComptes"
                         value="#{comptesBancairesMBean.lazyCompteBancaires}" 
                         var="item"
                         lazy="true"
@@ -93,7 +95,7 @@
                             <h:form>
                                 <p:growl id="message" showDetail="true" />
 
-                                    <p:commandButton value="Supprimer" actionListener="#{comptesBancairesMBean.supprimerCompte(item)}" update="message">
+                                    <p:commandButton value="Supprimer" actionListener="#{comptesBancairesMBean.supprimerCompte(item)}" update=":formListComptes:tableListComptes">
                                         <p:confirm header="Confirmation" message="Etes vous sûre?" icon="ui-icon-alert" />
                                     </p:commandButton>
 

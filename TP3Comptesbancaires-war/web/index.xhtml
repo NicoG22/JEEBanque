@@ -10,7 +10,8 @@
 
         <ui:composition template="./TemplatePrincipal.xhtml">
             <ui:define name="content">
-                <h1>Page d'accueil à remplir avec quelquechose.</h1>
+                <span class="textAccueil"><h:outputText  value="#{connexionMBean.message}" /></span>
+
             </ui:define>
         </ui:composition>
 

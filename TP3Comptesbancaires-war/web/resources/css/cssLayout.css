@@ -11,10 +11,14 @@ and open the template in the editor.
 
 #top {
     position: relative;
-    background-color: #036fab;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 5px;
     margin: 0px 0px 10px 0px;
+    
+    -webkit-box-shadow:0px 1px 1px grey;
+    -moz-box-shadow:0px 1px 1px grey;
+    box-shadow:0px 1px 1px grey;
 }
 
 #bottom {
@@ -45,17 +49,19 @@ and open the template in the editor.
 }
 
 .list-content {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
+    margin-left: 160px;
+    margin-right: 160px;
 }
 
 .center_content {
     position: relative;
-    background-color: #dddddd;
+    background-color: #CECEF6;
     padding: 5px;
 }
 
 .content_elem {
-    background-color: #dddddd;
+    background-color: #CECEF6;
     padding: 5px;
 }
 
