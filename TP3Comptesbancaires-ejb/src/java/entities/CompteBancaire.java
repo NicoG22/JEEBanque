@@ -22,7 +22,7 @@ import javax.persistence.OrderBy;
  * @author Renyusan
  */
 @Entity
-public class CompteBancaire implements Serializable {
+public abstract class CompteBancaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id

@@ -6,6 +6,7 @@
 package sessions;
 
 import entities.CompteBancaire;
+import entities.CompteCourant;
 import entities.OperationBancaire;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -32,7 +33,7 @@ public class GestionnaireDeComptebancaires {
     }
 
     // Fait un insert d'un compte bancaire (entité) dans la base
-    public void creerCompte(CompteBancaire c) {
+    public void creerCompte(CompteCourant c) {
         em.persist(c);
         
     }
@@ -42,13 +43,13 @@ public class GestionnaireDeComptebancaires {
             String nom = "Proprio" + i;
             double solde = Math.round(Math.random() * 100000);
             
-            CompteBancaire c = new CompteBancaire(nom, solde);
+            CompteBancaire c = new CompteCourant(nom, solde);
             
             for(int j=1; j < 30; j++) {
                 c.addOperation("Opération " + j, solde);
             }
             
-            creerCompte(c);
+            creerCompte((CompteCourant) c);
         }
     }
     
